@@ -2,7 +2,7 @@
   <div id="app" class="app">
     <header class="site-header">
       <div class="brand" @click="$router.push('/products')">
-        <img class="brand-logo" src="/logo-da-marca.png" alt="Logo Macedo Farias" />
+        <img class="brand-logo" :src="`${publicPath}logo-da-marca.png`" alt="Logo Macedo Farias" />
         <div>
           <strong>Macedo Farias</strong>
           <small>Confeitaria</small>
@@ -42,7 +42,8 @@ export default {
   data() {
     return {
       cartCount: 0,
-      user: null
+      user: null,
+      publicPath: process.env.BASE_URL
     };
   },
   created() {
