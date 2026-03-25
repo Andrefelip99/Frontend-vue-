@@ -40,6 +40,7 @@ import api from '@/services/api';
 import { setUser, setAuthBasic } from '@/services/user';
 
 export default {
+  name: 'LoginView',
   data() {
     return {
       email: '',

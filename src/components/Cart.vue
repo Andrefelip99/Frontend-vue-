@@ -115,6 +115,7 @@ import { getCart, updateQuantity, removeFromCart, clearCart, getCartSubtotal } f
 import { getUser } from '@/services/user';
 
 export default {
+  name: 'CartView',
   data() {
     return {
       items: [],

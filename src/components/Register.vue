@@ -45,6 +45,7 @@
 import api from '@/services/api';
 
 export default {
+  name: 'RegisterView',
   data() {
     return {
       name: '',
