@@ -22,7 +22,7 @@ A aplicação estará disponível em `http://localhost:8080`
 npm run build
 ```
 
-O output será gerado em `dist/`
+O output será gerado em `dist/`. O build usa um wrapper Node.js (`build.js`) para compatibilidade com Vercel.
 
 ## Deploy no Vercel
 
