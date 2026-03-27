@@ -203,17 +203,21 @@ export default {
         if (this.image2File) data.append('image2', this.image2File);
         if (this.image3File) data.append('image3', this.image3File);
 
-        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        // Não defina Content-Type manualmente em FormData, o axios/browser define o boundary automaticamente.
         if (this.form.id) {
-          await api.put(`/products/${this.form.id}`, data, config);
+          await api.put(`/products/${this.form.id}`, data);
         } else {
-          await api.post('/products', data, config);
+          await api.post('/products', data);
         }
         await this.load();
         this.resetForm();
       } catch (e) {
-        const apiMessage = e?.response?.data?.message;
-        this.formError = apiMessage || 'Nao foi possivel salvar o produto.';
+        if (e?.response?.status === 403) {
+          this.formError = 'Acesso negado: voce precisa ser admin para adicionar produtos.';
+        } else {
+          const apiMessage = e?.response?.data?.message;
+          this.formError = apiMessage || 'Nao foi possivel salvar o produto.';
+        }
       } finally {
         this.saving = false;
       }

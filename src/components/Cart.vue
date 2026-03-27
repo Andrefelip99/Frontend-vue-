@@ -196,7 +196,8 @@ export default {
         clearCart();
         this.items = [];
       } catch (e) {
-        this.error = 'Erro ao finalizar o pedido. Tente novamente.';
+        const apiMessage = e?.response?.data?.message;
+        this.error = apiMessage || 'Erro ao finalizar o pedido. Tente novamente.';
       } finally {
         this.processing = false;
       }
