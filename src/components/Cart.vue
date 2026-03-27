@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="page">
     <header class="header">
       <div>
@@ -170,7 +170,6 @@ export default {
       try {
         const orderPayload = {
           clientId: this.user.id,
-          status: 'PENDING',
           deliveryType: this.deliveryType,
           deliveryDate: this.deliveryDate
         };

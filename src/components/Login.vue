@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="auth">
     <div class="panel">
       <p class="eyebrow">Macedo Farias</p>
@@ -37,7 +37,7 @@
 
 <script>
 import api from '@/services/api';
-import { setUser, setAuthBasic } from '@/services/user';
+import { setUser, setAuthToken } from '@/services/user';
 
 export default {
   name: 'LoginView',
@@ -58,9 +58,8 @@ export default {
           email: this.email,
           password: this.password
         });
-        const authBasic = btoa(`${this.email}:${this.password}`);
-        setAuthBasic(authBasic);
-        setUser(response.data);
+        setAuthToken(response.data.token);
+        setUser(response.data.user);
         this.$router.push('/products');
       } catch (e) {
         this.error = 'Email ou senha invalidos.';

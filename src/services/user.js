@@ -1,5 +1,5 @@
-﻿const USER_KEY = 'user';
-const AUTH_KEY = 'auth_basic';
+const USER_KEY = 'user';
+const AUTH_KEY = 'auth_token';
 
 export function getUser() {
   try {
@@ -25,10 +25,10 @@ export function clearUser() {
   }
 }
 
-export function setAuthBasic(value) {
+export function setAuthToken(value) {
   localStorage.setItem(AUTH_KEY, value);
 }
 
-export function getAuthBasic() {
+export function getAuthToken() {
   return localStorage.getItem(AUTH_KEY);
 }
