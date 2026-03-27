@@ -8,11 +8,27 @@
       <form @submit.prevent="login" class="form">
         <label>
           Email
-          <input v-model="email" type="email" placeholder="seu@email.com" required />
+          <input
+            id="login-email"
+            name="email"
+            v-model="email"
+            type="email"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            required
+          />
         </label>
         <label>
           Senha
-          <input v-model="password" type="password" placeholder="Digite sua senha" required />
+          <input
+            id="login-password"
+            name="password"
+            v-model="password"
+            type="password"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+          />
         </label>
         <button class="btn primary" type="submit" :disabled="loading">
           {{ loading ? 'Entrando...' : 'Entrar' }}
@@ -54,7 +70,7 @@ export default {
       this.loading = true;
       this.error = '';
       try {
-        const response = await api.post('/clients/login', {
+        const response = await api.post('/auth/login', {
           email: this.email,
           password: this.password
         });
@@ -62,7 +78,8 @@ export default {
         setUser(response.data.user);
         this.$router.push('/products');
       } catch (e) {
-        this.error = 'Email ou senha invalidos.';
+        const apiMessage = e?.response?.data?.message;
+        this.error = apiMessage || 'Email ou senha invalidos.';
       } finally {
         this.loading = false;
       }

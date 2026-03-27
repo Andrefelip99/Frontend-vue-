@@ -8,24 +8,73 @@
       <form @submit.prevent="register" class="form">
         <label>
           Nome completo
-          <input v-model="name" placeholder="Seu nome" required />
+          <input
+            id="register-name"
+            name="name"
+            v-model="name"
+            placeholder="Seu nome"
+            minlength="2"
+            maxlength="20"
+            autocomplete="name"
+            required
+          />
         </label>
         <label>
           Email
-          <input v-model="email" type="email" placeholder="seu@email.com" required />
+          <input
+            id="register-email"
+            name="email"
+            v-model="email"
+            type="email"
+            placeholder="seu@email.com"
+            minlength="5"
+            maxlength="50"
+            autocomplete="email"
+            required
+          />
         </label>
         <label>
           Telefone
-          <input v-model="phoneNumber" placeholder="(DDD) 99999-9999" required />
+          <input
+            id="register-phone"
+            name="phoneNumber"
+            v-model="phoneNumber"
+            placeholder="999999999"
+            minlength="9"
+            maxlength="15"
+            inputmode="numeric"
+            pattern="\\d{9,15}"
+            autocomplete="tel"
+            required
+          />
         </label>
         <label>
           Senha
-          <input v-model="password" type="password" placeholder="Minimo 6 caracteres" required />
+          <input
+            id="register-password"
+            name="password"
+            v-model="password"
+            type="password"
+            placeholder="Minimo 6 caracteres"
+            minlength="6"
+            maxlength="20"
+            autocomplete="new-password"
+            required
+          />
         </label>
         <button class="btn primary" type="submit" :disabled="loading">
           {{ loading ? 'Enviando...' : 'Criar conta' }}
         </button>
       </form>
+      <div class="rules">
+        <p class="rules-title">Regras do cadastro</p>
+        <ul>
+          <li>Nome: 2 a 20 caracteres.</li>
+          <li>Email: 5 a 50 caracteres.</li>
+          <li>Telefone: 9 a 15 numeros (DDD opcional; salvamos sem DDD).</li>
+          <li>Senha: 6 a 20 caracteres.</li>
+        </ul>
+      </div>
       <p v-if="error" class="error">{{ error }}</p>
       <p class="helper">Ja tem conta? <router-link to="/login">Entrar</router-link></p>
     </div>
@@ -61,15 +110,21 @@ export default {
       this.loading = true;
       this.error = '';
       try {
+        const digitsOnly = (this.phoneNumber || '').replace(/\D/g, '');
+        const normalizedPhone =
+          digitsOnly.length > 9 ? digitsOnly.slice(-9) : digitsOnly;
         await api.post('/clients', {
           name: this.name,
           email: this.email,
-          phoneNumber: this.phoneNumber,
+          phoneNumber: normalizedPhone,
           password: this.password
         });
         this.$router.push('/login');
       } catch (e) {
-        this.error = 'Nao foi possivel concluir o cadastro.';
+        const apiMessage = e?.response?.data?.message;
+        this.error = apiMessage
+          ? apiMessage.replace(/;\s*/g, '\n').trim()
+          : 'Nao foi possivel concluir o cadastro.';
       } finally {
         this.loading = false;
       }
@@ -143,6 +198,7 @@ input {
 .error {
   color: #c0392b;
   margin-top: 8px;
+  white-space: pre-line;
 }
 
 .btn {
@@ -163,5 +219,18 @@ input {
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.rules {
+  margin-top: 16px;
+  background: #fff7ea;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.85rem;
+}
+
+.rules-title {
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 </style>

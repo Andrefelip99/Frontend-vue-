@@ -160,6 +160,10 @@ export default {
         this.$router.push('/login');
         return;
       }
+      if (this.user.role === 'ADMIN') {
+        this.error = 'Conta admin nao pode finalizar pedidos.';
+        return;
+      }
       if (!this.items.length || this.processing) {
         return;
       }
