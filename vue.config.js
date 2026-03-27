@@ -6,5 +6,14 @@ module.exports = {
       template: 'public/template.html',
       filename: 'index.html'
     }
+  },
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'https://macedofarias-backend.onrender.com',
+        changeOrigin: true,
+        pathRewrite: {'^/api': '/api'}
+      }
+    }
   }
 };
