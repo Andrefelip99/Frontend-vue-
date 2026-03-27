@@ -53,7 +53,7 @@
       </div>
       <article v-for="product in filteredProducts" :key="product.id" class="card">
         <div class="media">
-          <img :src="product.imageUrl" :alt="product.name" />
+          <img :src="product.imageDataUrl || product.imageUrl" :alt="product.name" />
           <span v-if="!product.active" class="tag">Indisponivel</span>
         </div>
         <div class="content">
@@ -118,7 +118,11 @@ export default {
       }
     },
     addToCart(product) {
-      addItem(product, 1);
+      const payload = {
+        ...product,
+        imageUrl: product.imageDataUrl || product.imageUrl
+      };
+      addItem(payload, 1);
       this.$router.push('/cart');
     },
     formatPrice(value) {
