@@ -98,11 +98,11 @@
           <h3>Pagamento Pix</h3>
           <p>Escaneie o QR Code ou copie o codigo abaixo para pagar.</p>
           <p class="status">Status: {{ payment.status }}</p>
-          <textarea readonly :value="payment.qrCode"></textarea>
+          <textarea readonly :value="pixCode"></textarea>
           <button class="btn" @click="copyQr">Copiar codigo</button>
         </div>
-        <div class="payment-qr" v-if="payment.qrCodeBase64">
-          <img :src="`data:image/png;base64,${payment.qrCodeBase64}`" alt="QR Code Pix" />
+        <div class="payment-qr" v-if="qrImageSrc">
+          <img :src="qrImageSrc" alt="QR Code Pix" />
         </div>
       </div>
     </section>
@@ -138,6 +138,35 @@ export default {
     },
     totalPreview() {
       return this.subtotal + this.deliveryFee;
+    },
+    pixCode() {
+      if (!this.payment) return '';
+      return (
+        this.payment.qrCode ||
+        this.payment.pixCopiaECola ||
+        this.payment.brCode ||
+        this.payment.codigoCopiaECola ||
+        ''
+      );
+    },
+    qrImageSrc() {
+      if (!this.payment) return '';
+      const candidates = [
+        this.payment.qrCodeBase64,
+        this.payment.qrCodeImageBase64,
+        this.payment.qrCodeImage,
+        this.payment.qrCodeBase64Image,
+        this.payment.qrCodeImageUrl,
+        this.payment.qrCodeUrl
+      ];
+      for (const candidate of candidates) {
+        if (!candidate || typeof candidate !== 'string') continue;
+        if (candidate.startsWith('data:image')) return candidate;
+        if (candidate.startsWith('http://') || candidate.startsWith('https://')) return candidate;
+        const looksBase64 = /^[A-Za-z0-9+/=]+$/.test(candidate) && candidate.length > 100;
+        if (looksBase64) return `data:image/png;base64,${candidate}`;
+      }
+      return '';
     }
   },
   created() {
@@ -233,9 +262,9 @@ export default {
       return `${yyyy}-${mm}-${dd}`;
     },
     async copyQr() {
-      if (!this.payment || !this.payment.qrCode) return;
+      if (!this.pixCode) return;
       try {
-        await navigator.clipboard.writeText(this.payment.qrCode);
+        await navigator.clipboard.writeText(this.pixCode);
       } catch (e) {
         this.error = 'Nao foi possivel copiar o codigo.';
       }
