@@ -43,7 +43,7 @@
             minlength="9"
             maxlength="15"
             inputmode="numeric"
-            pattern="\\d{9,15}"
+            pattern="[0-9]{9,15}"
             autocomplete="tel"
             required
           />
