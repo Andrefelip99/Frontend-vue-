@@ -205,9 +205,9 @@ export default {
 
         // Não defina Content-Type manualmente em FormData, o axios/browser define o boundary automaticamente.
         if (this.form.id) {
-          await api.put(`/products/${this.form.id}`, data);
+          await api.put(`/products/${this.form.id}/multipart`, data);
         } else {
-          await api.post('/products', data);
+          await api.post('/products/multipart', data);
         }
         await this.load();
         this.resetForm();
