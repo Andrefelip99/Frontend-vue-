@@ -71,7 +71,7 @@
       <div v-else-if="!products.length" class="state">Nenhum produto cadastrado.</div>
 
       <div v-else class="grid">
-        <article v-for="product in products" :key="product.id" class="card">
+        <article v-for="product in products" :key="product.id" class="card" :class="{ inactive: !product.active }">
           <div class="media">
             <img :src="product.imageDataUrl || product.imageUrl" :alt="product.name" />
             <span class="tag" :class="product.active ? 'on' : 'off'">
@@ -130,7 +130,7 @@ export default {
       this.loading = true;
       this.error = '';
       try {
-        const res = await api.get('/products');
+        const res = await api.get('/products/admin');
         this.products = res.data.content || res.data || [];
       } catch (e) {
         this.error = 'Nao foi possivel carregar os produtos.';
@@ -357,6 +357,14 @@ export default {
   display: grid;
 }
 
+.card.inactive {
+  background: #fafafa;
+}
+
+.card.inactive .media img {
+  filter: grayscale(1) contrast(0.9);
+}
+
 .media {
   position: relative;
   height: 160px;
@@ -385,8 +393,9 @@ export default {
 }
 
 .tag.off {
-  background: #c0392b;
-  color: #fff7ea;
+  background: #f5f5f5;
+  color: #111;
+  border: 1px solid #111;
 }
 
 .content {
