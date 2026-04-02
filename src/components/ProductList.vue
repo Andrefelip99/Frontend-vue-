@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="hero-card">
-        <img class="hero-logo" src="/logo-da-marca.png" alt="Logo Macedo Farias" />
+        <img class="hero-logo" :src="`${publicPath}logo-da-marca.png`" alt="Logo Macedo Farias" />
         <h3>Favoritos da semana</h3>
         <p>Brownies, brigadeiros gourmet e bolos especiais sob encomenda.</p>
         <ul>
@@ -82,7 +82,8 @@ export default {
       categories: [],
       search: '',
       loading: false,
-      error: ''
+      error: '',
+      publicPath: process.env.BASE_URL
     };
   },
   computed: {
