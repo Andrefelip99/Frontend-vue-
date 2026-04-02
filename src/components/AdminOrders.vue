@@ -26,6 +26,8 @@
           <div>
             <h3>Pedido #{{ order.id }}</h3>
             <p class="muted">{{ order.clientName }}</p>
+            <p v-if="clientEmail(order)" class="muted">{{ clientEmail(order) }}</p>
+            <p v-if="clientPhone(order)" class="muted">{{ formatPhone(clientPhone(order)) }}</p>
           </div>
           <span class="status">{{ order.status }}</span>
         </div>
@@ -72,7 +74,9 @@ export default {
       return this.orders.filter(order => {
         const byId = String(order.id).includes(term);
         const byName = String(order.clientName || '').toLowerCase().includes(term);
-        return byId || byName;
+        const byEmail = String(this.clientEmail(order) || '').toLowerCase().includes(term);
+        const byPhone = String(this.clientPhone(order) || '').toLowerCase().includes(term);
+        return byId || byName || byEmail || byPhone;
       });
     }
   },
@@ -121,6 +125,33 @@ export default {
       if (order.state) parts.push(order.state);
       if (order.zipCode) parts.push(`CEP ${order.zipCode}`);
       return parts.join(' - ');
+    },
+    clientEmail(order) {
+      return (
+        order.clientEmail ||
+        order.email ||
+        order.client?.email ||
+        order.client?.emailAddress ||
+        ''
+      );
+    },
+    clientPhone(order) {
+      return (
+        order.clientPhoneNumber ||
+        order.phoneNumber ||
+        order.phone ||
+        order.client?.phoneNumber ||
+        order.client?.phone ||
+        ''
+      );
+    },
+    formatPhone(value) {
+      if (!value) return '';
+      const digits = String(value).replace(/\D/g, '');
+      if (digits.length === 9) return `${digits.slice(0, 5)}-${digits.slice(5)}`;
+      if (digits.length === 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+      if (digits.length === 11) return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+      return value;
     }
   }
 };
