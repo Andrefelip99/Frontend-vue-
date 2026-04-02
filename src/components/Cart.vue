@@ -62,6 +62,38 @@
           <input type="date" v-model="deliveryDate" :min="minDeliveryDate" required />
         </div>
 
+        <div class="address" v-if="deliveryType === 'ENTREGA'">
+          <h4>Endereco de entrega</h4>
+          <div class="field">
+            <label>CEP</label>
+            <input v-model="zipCode" placeholder="00000000" minlength="8" maxlength="9" required />
+          </div>
+          <div class="field">
+            <label>Logradouro</label>
+            <input v-model="street" placeholder="Rua, avenida, etc" minlength="2" maxlength="80" required />
+          </div>
+          <div class="field">
+            <label>Numero</label>
+            <input v-model="number" placeholder="Numero" minlength="1" maxlength="10" required />
+          </div>
+          <div class="field">
+            <label>Complemento</label>
+            <input v-model="complement" placeholder="Apartamento, casa, bloco" maxlength="40" />
+          </div>
+          <div class="field">
+            <label>Bairro</label>
+            <input v-model="neighborhood" placeholder="Bairro" minlength="2" maxlength="60" required />
+          </div>
+          <div class="field">
+            <label>Cidade</label>
+            <input v-model="city" placeholder="Cidade" minlength="2" maxlength="60" required />
+          </div>
+          <div class="field">
+            <label>Estado (UF)</label>
+            <input v-model="state" placeholder="UF" minlength="2" maxlength="2" required />
+          </div>
+        </div>
+
         <button class="btn primary" @click="checkout" :disabled="processing">
           {{ processing ? 'Processando...' : 'Finalizar e gerar Pix' }}
         </button>
@@ -79,6 +111,7 @@
           <p><strong>Total:</strong> {{ formatPrice(order.total) }}</p>
           <p><strong>Entrega:</strong> {{ deliveryLabel(order.deliveryType) }}</p>
           <p><strong>Data:</strong> {{ formatDate(order.deliveryDate) }}</p>
+          <p v-if="order.zipCode"><strong>Endereco:</strong> {{ formatAddress(order) }}</p>
         </div>
         <div>
           <p><strong>Itens:</strong></p>
@@ -126,7 +159,14 @@ export default {
       payment: null,
       processing: false,
       error: '',
-      user: null
+      user: null,
+      zipCode: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: ''
     };
   },
   computed: {
@@ -172,6 +212,15 @@ export default {
   created() {
     this.user = getUser();
     this.items = getCart();
+    if (this.user) {
+      this.zipCode = this.user.zipCode || '';
+      this.street = this.user.street || '';
+      this.number = this.user.number || '';
+      this.complement = this.user.complement || '';
+      this.neighborhood = this.user.neighborhood || '';
+      this.city = this.user.city || '';
+      this.state = this.user.state || '';
+    }
     const min = this.addDays(new Date(), 2);
     this.minDeliveryDate = this.formatInputDate(min);
     this.deliveryDate = this.minDeliveryDate;
@@ -196,6 +245,12 @@ export default {
       if (!this.items.length || this.processing) {
         return;
       }
+      if (this.deliveryType === 'ENTREGA') {
+        if (!this.zipCode || !this.street || !this.number || !this.neighborhood || !this.city || !this.state) {
+          this.error = 'Preencha o endereco completo para entrega.';
+          return;
+        }
+      }
       this.processing = true;
       this.error = '';
       this.order = null;
@@ -204,7 +259,14 @@ export default {
         const orderPayload = {
           clientId: this.user.id,
           deliveryType: this.deliveryType,
-          deliveryDate: this.deliveryDate
+          deliveryDate: this.deliveryDate,
+          zipCode: this.zipCode,
+          street: this.street,
+          number: this.number,
+          complement: this.complement,
+          neighborhood: this.neighborhood,
+          city: this.city,
+          state: this.state
         };
         const orderRes = await api.post('/orders', orderPayload);
         this.order = orderRes.data;
@@ -249,6 +311,17 @@ export default {
       } catch (e) {
         return value;
       }
+    },
+    formatAddress(order) {
+      const parts = [];
+      if (order.street) parts.push(order.street);
+      if (order.number) parts.push(order.number);
+      if (order.complement) parts.push(order.complement);
+      if (order.neighborhood) parts.push(order.neighborhood);
+      if (order.city) parts.push(order.city);
+      if (order.state) parts.push(order.state);
+      if (order.zipCode) parts.push(`CEP ${order.zipCode}`);
+      return parts.join(' - ');
     },
     addDays(date, days) {
       const copy = new Date(date);
@@ -381,6 +454,27 @@ export default {
 }
 
 .date input {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(28, 19, 11, 0.2);
+}
+
+.address {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.address h4 {
+  margin: 4px 0 6px;
+}
+
+.address .field {
+  display: grid;
+  gap: 6px;
+}
+
+.address input {
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid rgba(28, 19, 11, 0.2);

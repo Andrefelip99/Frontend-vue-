@@ -49,6 +49,97 @@
           />
         </label>
         <label>
+          CEP
+          <input
+            id="register-zip"
+            name="zipCode"
+            v-model="zipCode"
+            placeholder="00000000"
+            minlength="8"
+            maxlength="9"
+            inputmode="numeric"
+            pattern="[0-9]{8,9}"
+            autocomplete="postal-code"
+            required
+          />
+        </label>
+        <label>
+          Logradouro
+          <input
+            id="register-street"
+            name="street"
+            v-model="street"
+            placeholder="Rua, avenida, etc"
+            minlength="2"
+            maxlength="80"
+            autocomplete="address-line1"
+            required
+          />
+        </label>
+        <label>
+          Numero
+          <input
+            id="register-number"
+            name="number"
+            v-model="number"
+            placeholder="Numero"
+            minlength="1"
+            maxlength="10"
+            autocomplete="address-line2"
+            required
+          />
+        </label>
+        <label>
+          Complemento (opcional)
+          <input
+            id="register-complement"
+            name="complement"
+            v-model="complement"
+            placeholder="Apartamento, casa, bloco"
+            maxlength="40"
+            autocomplete="address-line2"
+          />
+        </label>
+        <label>
+          Bairro
+          <input
+            id="register-neighborhood"
+            name="neighborhood"
+            v-model="neighborhood"
+            placeholder="Bairro"
+            minlength="2"
+            maxlength="60"
+            autocomplete="address-level3"
+            required
+          />
+        </label>
+        <label>
+          Cidade
+          <input
+            id="register-city"
+            name="city"
+            v-model="city"
+            placeholder="Cidade"
+            minlength="2"
+            maxlength="60"
+            autocomplete="address-level2"
+            required
+          />
+        </label>
+        <label>
+          Estado (UF)
+          <input
+            id="register-state"
+            name="state"
+            v-model="state"
+            placeholder="UF"
+            minlength="2"
+            maxlength="2"
+            autocomplete="address-level1"
+            required
+          />
+        </label>
+        <label>
           Senha
           <input
             id="register-password"
@@ -72,6 +163,7 @@
           <li>Nome: 2 a 20 caracteres.</li>
           <li>Email: 5 a 50 caracteres.</li>
           <li>Telefone: 9 a 15 numeros (DDD opcional; salvamos sem DDD).</li>
+          <li>Endereco completo obrigatorio para entrega.</li>
           <li>Senha: 6 a 20 caracteres.</li>
         </ul>
       </div>
@@ -100,6 +192,13 @@ export default {
       name: '',
       email: '',
       phoneNumber: '',
+      zipCode: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: '',
       password: '',
       loading: false,
       error: ''
@@ -117,6 +216,13 @@ export default {
           name: this.name,
           email: this.email,
           phoneNumber: normalizedPhone,
+          zipCode: this.zipCode,
+          street: this.street,
+          number: this.number,
+          complement: this.complement,
+          neighborhood: this.neighborhood,
+          city: this.city,
+          state: this.state,
           password: this.password
         });
         this.$router.push('/login');

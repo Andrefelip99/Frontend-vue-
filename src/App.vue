@@ -11,7 +11,8 @@
       <nav class="nav">
         <router-link to="/products">Produtos</router-link>
         <router-link to="/cart">Carrinho ({{ cartCount }})</router-link>
-        <router-link v-if="user && user.role === 'ADMIN'" to="/admin/products">Admin</router-link>
+        <router-link v-if="user && user.role === 'ADMIN'" to="/admin/products">Admin Produtos</router-link>
+        <router-link v-if="user && user.role === 'ADMIN'" to="/admin/orders">Admin Pedidos</router-link>
         <router-link to="/login" v-if="!user">Login</router-link>
         <router-link to="/register" v-if="!user">Registrar</router-link>
         <button v-if="user" class="btn ghost" @click="logout">Sair</button>
