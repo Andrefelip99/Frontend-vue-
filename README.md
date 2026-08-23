@@ -30,7 +30,7 @@ O projeto está configurado para fazer deploy automático no Vercel. As configur
 
 ### Configurações:
 - **Framework**: Vue 3
-- **Output Directory**: `frontend/dist`
+- **Output Directory**: `FRONTEND_DO_SITE/dist`
 - **Build Command**: `npm run build`
 
 ## Problemas Comuns
@@ -56,7 +56,7 @@ O projeto possui 15 vulnerabilidades transitividades no Vue CLI 5 que não afeta
 ## Estrutura do Projeto
 
 ```
-frontend/
+FRONTEND_DO_SITE/
 ├── src/
 │   ├── App.vue          # Componente raiz
 │   ├── main.js          # Ponto de entrada

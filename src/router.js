@@ -1,39 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import Login from '@/components/Login.vue';
-import ProductList from '@/components/ProductList.vue';
-import AdminProducts from '@/components/AdminProducts.vue';
-import { getUser } from '@/services/user';
+import ProductList from './components/ProductList.vue';
+import Login from './components/Login.vue';
+import AdminProducts from './components/AdminProducts.vue';
+import { getToken } from './services/auth';
 
-const routes = [
-  { path: '/login', component: Login },
-  { path: '/products', component: ProductList },
-  { path: '/admin/products', component: AdminProducts, meta: { requiresAdmin: true } },
-  { path: '/', redirect: '/products' }
-];
-
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-  scrollBehavior() {
-    return { top: 0 };
-  }
-});
-
-router.beforeEach((to, from, next) => {
-  if (!to.meta?.requiresAdmin) {
-    next();
-    return;
-  }
-  const user = getUser();
-  if (!user) {
-    next('/login');
-    return;
-  }
-  if (user.role !== 'ADMIN') {
-    next('/products');
-    return;
-  }
-  next();
-});
-
+const router = createRouter({ history: createWebHashHistory(), routes: [
+  { path: '/', name: 'catalog', component: ProductList },
+  { path: '/products/:id', name: 'product-detail', component: ProductList },
+  { path: '/login', name: 'login', component: Login },
+  { path: '/admin', name: 'admin', component: AdminProducts, meta: { requiresAuth: true } },
+  { path: '/admin/products', redirect: '/admin' }
+], scrollBehavior: () => ({ top: 0 }) });
+router.beforeEach((to) => to.meta.requiresAuth && !getToken() ? { name: 'login', query: { redirect: to.fullPath } } : true);
 export default router;

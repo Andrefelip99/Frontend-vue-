@@ -1,4 +1,17 @@
 export const CATEGORIES = ['Bolos', 'Brownies', 'Sliciecakes', 'DeliciasDePote', 'Sobremesas', 'DatasEspeciais'] as const;
 export type Category = typeof CATEGORIES[number];
-export type Product = { id: number; title: string; description: string; price: number; oneImageUrl: string; twoImageUrl?: string; threeImageUrl?: string; link?: string; category?: string };
+
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  oneImageUrl: string;
+  twoImageUrl?: string | null;
+  threeImageUrl?: string | null;
+  link?: string | null;
+  category: Category;
+}
+
 export type ProductPayload = Omit<Product, 'id'>;
+  
