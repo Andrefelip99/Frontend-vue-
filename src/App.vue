@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       user: null,
-      publicPath: process.env.BASE_URL
+      publicPath: import.meta.env.BASE_URL
     };
   },
   created() {
