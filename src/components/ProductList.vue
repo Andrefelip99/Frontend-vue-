@@ -10,17 +10,17 @@
         </p>
         <div class="hero-actions">
           <button class="btn primary" @click="scrollToGrid">Ver vitrine</button>
-          <button class="btn ghost" @click="$router.push('/cart')">Ir para o carrinho</button>
+          <button class="btn ghost" @click="$router.push('/products')">Ir para o site</button>
         </div>
       </div>
       <div class="hero-card">
         <img class="hero-logo" :src="`${publicPath}logo-da-marca.png`" alt="Logo Macedo Farias" />
         <h3>Favoritos da semana</h3>
-        <p>Brownies, brigadeiros gourmet e bolos especiais sob encomenda.</p>
+        <p>Brownies, brigadeiros gourmet e bolos especiais para conhecer.</p>
         <ul>
-          <li>Entrega rapida na regiao</li>
-          <li>Retirada no local</li>
-          <li>Pagamento Pix</li>
+          <li>Ingredientes selecionados</li>
+          <li>Produção artesanal</li>
+          <li>Sabores para todos os momentos</li>
         </ul>
       </div>
     </section>
@@ -33,8 +33,8 @@
         <button class="btn small" @click="refresh" :disabled="loading">
           {{ loading ? 'Carregando...' : 'Atualizar' }}
         </button>
-        <button class="btn small ghost" @click="$router.push('/cart')">
-          Ver carrinho
+        <button class="btn small ghost" @click="$router.push('/products')">
+          Ver site
         </button>
       </div>
     </section>
@@ -61,9 +61,6 @@
           <p class="desc">{{ product.description }}</p>
           <div class="meta">
             <strong>{{ formatPrice(product.price) }}</strong>
-            <button class="btn" :disabled="!product.active" @click="addToCart(product)">
-              Adicionar
-            </button>
           </div>
         </div>
       </article>
@@ -73,7 +70,6 @@
 
 <script>
 import api from '@/services/api';
-import { addToCart as addItem } from '@/services/cart';
 
 export default {
   data() {
@@ -117,14 +113,6 @@ export default {
       } finally {
         this.loading = false;
       }
-    },
-    addToCart(product) {
-      const payload = {
-        ...product,
-        imageUrl: product.imageDataUrl || product.imageUrl
-      };
-      addItem(payload, 1);
-      this.$router.push('/cart');
     },
     formatPrice(value) {
       const number = Number(value) || 0;

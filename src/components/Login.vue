@@ -3,7 +3,7 @@
     <div class="panel">
       <p class="eyebrow">Macedo Farias</p>
       <h2>Bem-vindo de volta</h2>
-      <p class="subtitle">Entre para acompanhar seus pedidos e finalizar compras.</p>
+      <p class="subtitle">Acesso restrito ao painel administrativo.</p>
 
       <form @submit.prevent="login" class="form">
         <label>
@@ -35,18 +35,12 @@
         </button>
       </form>
       <p v-if="error" class="error">{{ error }}</p>
-      <p class="helper">Ainda nao tem conta? <router-link to="/register">Criar cadastro</router-link></p>
+      
     </div>
 
     <div class="side">
-      <h3>Doces feitos sob medida</h3>
-      <p>
-        Cadastre-se para receber novidades e garantir sua encomenda com rapidez.
-      </p>
-      <div class="highlight">
-        <strong>Pix liberado</strong>
-        <span>Finalize o pedido e receba o QR Code na hora.</span>
-      </div>
+      <h3>Gestao do catalogo</h3>
+      <p>Use seu acesso administrativo para atualizar os produtos exibidos na vitrine.</p>
     </div>
   </div>
 </template>

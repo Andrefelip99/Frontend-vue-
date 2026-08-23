@@ -1,19 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Login from '@/components/Login.vue';
-import Register from '@/components/Register.vue';
 import ProductList from '@/components/ProductList.vue';
-import Cart from '@/components/Cart.vue';
 import AdminProducts from '@/components/AdminProducts.vue';
-import AdminOrders from '@/components/AdminOrders.vue';
 import { getUser } from '@/services/user';
 
 const routes = [
   { path: '/login', component: Login },
-  { path: '/register', component: Register },
   { path: '/products', component: ProductList },
-  { path: '/cart', component: Cart },
   { path: '/admin/products', component: AdminProducts, meta: { requiresAdmin: true } },
-  { path: '/admin/orders', component: AdminOrders, meta: { requiresAdmin: true } },
   { path: '/', redirect: '/products' }
 ];
 

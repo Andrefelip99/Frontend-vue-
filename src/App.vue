@@ -10,11 +10,8 @@
       </div>
       <nav class="nav">
         <router-link to="/products">Produtos</router-link>
-        <router-link to="/cart">Carrinho ({{ cartCount }})</router-link>
         <router-link v-if="user && user.role === 'ADMIN'" to="/admin/products">Admin Produtos</router-link>
-        <router-link v-if="user && user.role === 'ADMIN'" to="/admin/orders">Admin Pedidos</router-link>
         <router-link to="/login" v-if="!user">Login</router-link>
-        <router-link to="/register" v-if="!user">Registrar</router-link>
         <button v-if="user" class="btn ghost" @click="logout">Sair</button>
       </nav>
     </header>
@@ -36,14 +33,12 @@
 </template>
 
 <script>
-import { getCartCount } from '@/services/cart';
 import { getUser, clearUser } from '@/services/user';
 
 export default {
   name: 'App',
   data() {
     return {
-      cartCount: 0,
       user: null,
       publicPath: process.env.BASE_URL
     };
@@ -52,11 +47,9 @@ export default {
     this.refreshState();
   },
   mounted() {
-    window.addEventListener('cart-updated', this.refreshState);
     window.addEventListener('user-updated', this.refreshState);
   },
   beforeUnmount() {
-    window.removeEventListener('cart-updated', this.refreshState);
     window.removeEventListener('user-updated', this.refreshState);
   },
   watch: {
@@ -66,7 +59,6 @@ export default {
   },
   methods: {
     refreshState() {
-      this.cartCount = getCartCount();
       this.user = getUser();
     },
     logout() {
