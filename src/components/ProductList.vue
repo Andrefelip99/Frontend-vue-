@@ -378,6 +378,7 @@ import {
 
 import {
   getCachedProducts,
+  getSnapshotProducts,
   PRODUCTS_UPDATED_AT_KEY,
   refreshProducts
 } from '../services/products';
@@ -490,8 +491,13 @@ async function load() {
 
   const cached = getCachedProducts();
 
+  const apiRequest = refreshProducts();
+
   if (cached) {
     products.value = cached;
+  } else {
+    const snapshot = await getSnapshotProducts();
+    if (snapshot) products.value = snapshot;
   }
 
   loading.value = !products.value.length;
@@ -500,7 +506,7 @@ async function load() {
 
   try {
 
-    const fresh = await refreshProducts();
+    const fresh = await apiRequest;
 
     products.value = fresh;
 

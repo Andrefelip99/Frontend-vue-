@@ -3,6 +3,7 @@ import type { Product, ProductPayload } from '../types';
 
 export const PRODUCTS_CACHE_KEY = 'macedo-farias-products';
 export const PRODUCTS_UPDATED_AT_KEY = 'macedo-farias-updated-at';
+export const PRODUCTS_SNAPSHOT_URL = '/products-snapshot.json';
 
 type ProductResponse = Product[] | { content?: Product[] };
 const normalize = (data: ProductResponse) => Array.isArray(data) ? data : data.content || [];
@@ -14,6 +15,17 @@ export function getCachedProducts(): Product[] | null {
     const parsed: unknown = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed as Product[] : null;
   } catch { return null; }
+}
+
+export async function getSnapshotProducts(): Promise<Product[] | null> {
+  try {
+    const response = await fetch(PRODUCTS_SNAPSHOT_URL, { cache: 'no-store' });
+    if (!response.ok) return null;
+    const parsed: unknown = await response.json();
+    return Array.isArray(parsed) ? parsed as Product[] : null;
+  } catch {
+    return null;
+  }
 }
 
 function saveCachedProducts(products: Product[]) {

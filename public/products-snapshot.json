@@ -1,0 +1,123 @@
+[
+	{
+		"id": 6,
+		"title": "Coxinhas",
+		"description": "Coxinhas Saborosas nos sabores: \n- Ferreiro rocher\n- Ninho com nutella\n- Brigadeiro\n- Kinder",
+		"category": "Sobremesas",
+		"price": 15.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787503146/rdxafkq9r07ek6okilho.png",
+		"twoImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787503673/dfg66hx2f0du7bduufgk.png",
+		"threeImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787503714/zff5xuxuyi1ezai32qyh.png",
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 8,
+		"title": "Pudim",
+		"description": "Delicioso pudim tradicional.",
+		"category": "Sobremesas",
+		"price": 66.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787503875/cy9squsu9ouzlla6swe0.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 9,
+		"title": "Delícia de Abacaxi",
+		"description": "Sabor tropical irresistível.",
+		"category": "Sobremesas",
+		"price": 110.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787503944/l5lid9cbepvmhtto8xnz.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 10,
+		"title": "Banoffee de Travessa",
+		"description": "Uma sobremesa gigante e deliciosa.",
+		"category": "Sobremesas",
+		"price": 110.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504040/f8qdgibdxnlnas58wkzs.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 11,
+		"title": "Pavê de Limão",
+		"description": "Sabor incrível, escolha entre limão ou chocolate.",
+		"category": "Sobremesas",
+		"price": 70.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504113/kknuy6bp2sr1nvxf4td7.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 12,
+		"title": "Bolos de Festa (15 fatias)",
+		"description": "Recheios Tradicionais\n• Coco\n• Brigadeiro\n• Ninho\n• Amendoim\n• Brigadeiro de Morango\n• Cajuzinho (amendoim com chocolate)\n• Doce de Leite\n• Chocolate Branco\n• Chocolate Meio Amargo\n• Ameixa",
+		"category": "Bolos",
+		"price": 150.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504247/n5ursakdfatphlh6qpsj.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 13,
+		"title": "Torta de Vitrine (15 fatias)",
+		"description": "Recheios Especiais\n• Maracujá\n• Ninho com Geléia de Morango\n• Nozes\n• Abacaxi\n• Ameixa com Doce de Leite\n• Brigadeiro com Pedaços de Chocolate Nobre\n• Brigadeiro Branco com Pedaços de Chocolate Branco Nobre",
+		"category": "Bolos",
+		"price": 150.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504455/aoc8sjzbzi5kvzlp2dqt.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 14,
+		"title": "Brownie de Brigadeiro",
+		"description": "Delicioso brownie com recheio de brigadeiro.",
+		"category": "Brownies",
+		"price": 6.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504587/x111n3uxk8jwcibako63.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 15,
+		"title": "Brownie Doce de Leite",
+		"description": "Brownie macio com recheio de doce de leite.",
+		"category": "Brownies",
+		"price": 6.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504674/s6seoa5w7cpdhkrlyyq3.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 16,
+		"title": "Slice Cake de Chocolate",
+		"description": "Clássico, molhadinho e irresistível.",
+		"category": "Sliciecakes",
+		"price": 15.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504781/i1yqvipx08saijjn5dfn.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	},
+	{
+		"id": 17,
+		"title": "Slice Cake Red Velvet",
+		"description": "Elegante, macio e super especial.",
+		"category": "Sliciecakes",
+		"price": 15.00,
+		"oneImageUrl": "https://res.cloudinary.com/ekotofv9/image/upload/v1787504845/usphzfyi6pwydrwbys8v.png",
+		"twoImageUrl": null,
+		"threeImageUrl": null,
+		"link": "https://wa.me/5521982591226?text=Ol%C3%A1%20Bruna%2C%20vim%20atrav%C3%A9s%20do%20Instagram%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20card%C3%A1pio%20%F0%9F%98%83"
+	}
+]
